@@ -1,0 +1,13 @@
+name: Validate Sync Data
+on:
+  push:
+    paths: ['data/**']
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Validate JSON
+      run: |
+        python3 -c "import json; json.load(open('data/user.json'))" && echo "user.json valid"
+        python3 -c "import json; json.load(open('data/quests.json'))" && echo "quests.json valid"
